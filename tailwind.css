@@ -1,0 +1,315 @@
+إعدادات عامة
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif; /* استخدم خط Sans-serif نظيف */
+    background-color: #fff;
+    color: #1a1a1a;
+}
+
+/* التوسيط الكامل للسيكشن */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 50px;
+}
+
+/* تنسيق اللوجو */
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 100px;
+}
+
+.beta {
+    font-size: 12px;
+    background: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+/* تنسيق النصوص الرئيسية */
+.hero-content {
+    text-align: center;
+    max-width: 900px;
+}
+
+h1 {
+    font-size: 4rem; /* حجم كبير للعنوان */
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.highlight {
+    color: #4361ee; /* اللون الأزرق المميز في الصورة */
+}
+
+p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    line-height: 1.6;
+}
+
+/* تنسيق الزرار */
+.btn-get-started {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 15px 35px;
+    border-radius: 50px; /* زوايا دائرية جداً */
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-get-started:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
+
+
+/* تصميم زر التبديل (Toggle Switch) */
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input { display: none; }
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+  border-radius: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 5px;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+input:checked + .slider { background-color: #6366F1; }
+input:checked + .slider:before { transform: translateX(26px); }
+
+/* إخفاء الأيقونة غير النشطة */
+.sun, .moon { font-size: 14px; user-select: none; }
+
+:root {
+    /* الألوان الأساسية - وضع نهاري */
+    --bg-color: #ffffff;
+    --text-main: #1a1a1b;
+    --text-sub: #4b5563;
+    --primary: #6366f1; /* بنفسجي تقني */
+    --secondary: #f3f4f6;
+    --header-bg: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="dark"] {
+    /* الألوان الأساسية - وضع ليلي */
+    --bg-color: #0f172a;
+    --text-main: #f8fafc;
+    --text-sub: #94a3b8;
+    --primary: #818cf8;
+    --secondary: #1e293b;
+    --header-bg: rgba(15, 23, 42, 0.8);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+}
+
+/* الهيدر */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    position: fixed;
+    width: 90%;
+    top: 0;
+    backdrop-filter: blur(10px);
+    background: var(--header-bg);
+    z-index: 1000;
+}
+
+.logo { font-size: 24px; font-weight: bold; }
+.logo b { color: var(--primary); }
+
+/* أزرار التحكم */
+.controls { display: flex; gap: 15px; }
+.control-btn {
+    background: var(--secondary);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+/* الهيرو سيكشن */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 10%;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #2528c4, #cd2323);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p {
+    font-size: 1.2rem;
+    color: var(--text-sub);
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+/* الأزرار */
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    padding: 15px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+}
+
+/* التبديل بين اللغات (تحويل الاتجاه) */
+[dir="ltr"] .main-header { flex-direction: row; }
+[dir="rtl"] .main-header { flex-direction: row; }
+
+
+/* إعدادات الأزرار العامة */
+.cta-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+/* 1. الزر الأساسي (Primary AI Button) */
+.btn-ai-primary {
+    position: relative;
+    padding: 16px 40px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    border: none;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+}
+
+.btn-ai-primary:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(168, 85, 247, 0.4);
+}
+
+/* تأثير التوهج عند الـ Hover */
+.btn-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s ease;
+}
+
+.btn-ai-primary:hover .btn-glow {
+    transform: scale(1);
+}
+
+/* 2. الزر الثانوي (Secondary Glass Button) */
+.btn-ai-secondary {
+    padding: 14px 38px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    background: transparent;
+    border: 2px solid var(--primary);
+    border-radius: 15px;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.btn-ai-secondary:hover {
+    background: var(--primary);
+    color: white !important;
+    box-shadow: 0 0 20px rgba(0, 2, 113, 0.4);
+}
+
+/* زر تبديل اللغة والوضع الليلي (تطوير الأزرار الصغيرة) */
+.control-btn {
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    padding: 8px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.control-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}

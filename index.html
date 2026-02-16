@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>SmartEdu AI - منصة التعلم الذكي</title>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { 
+                        primary: '#2325c6', 
+                        accent: '#bc1e1e', 
+                        darkBg: '#0b0f1a'
+                    },
+                    backgroundImage: {
+                        'main-gradient': 'linear-gradient(135deg, #2325c6 0%, #bc1e1e 100%)',
+                    },
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'Tajawal', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .text-gradient {
+            background: linear-gradient(135deg, #2325c6 0%, #bc1e1e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes pulse-bg {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.05); }
+        }
+        .animate-pulse-slow { animation: pulse-bg 10s infinite ease-in-out; }
+        
+        @keyframes float-pattern {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 40px; }
+        }
+        .animate-pattern { animation: float-pattern 20s linear infinite; }
+    </style>
+</head>
+<body class="bg-white dark:bg-darkBg text-slate-900 dark:text-white font-sans overflow-x-hidden transition-colors duration-700">
+
+    <header class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/30 dark:bg-black/20 border-b border-slate-200 dark:border-white/10">
+        <nav class="max-w-7xl mx-auto px-6 py-4 flex flex-row items-center justify-between" dir="ltr">
+            <div id="logoContainer" class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                Smart<span class="text-gradient font-black">Edu</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="toggleLang()" class="min-w-[110px] h-10 px-4 py-2 rounded-xl bg-main-gradient text-white font-bold text-sm shadow-lg hover:scale-105 transition-all">
+                    <span id="langLabel">English</span>
+                </button>
+                <button onclick="toggleTheme()" class="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/20">
+                    <span class="dark:hidden text-lg">🌙</span>
+                    <span class="hidden dark:inline text-lg text-yellow-400">☀️</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 -z-20 bg-white dark:bg-slate-950">
+            <div class="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+        </div>
+        <div class="absolute inset-0 -z-10 animate-pulse-slow [background:radial-gradient(125%_125%_at_50%_10%,transparent_40%,rgba(35,37,198,0.25)_70%,rgba(188,30,30,0.2)_100%)]"></div>
+
+        <div class="max-w-4xl mx-auto px-5 text-center z-10">
+            <h1 id="heroTitle" class="text-5xl md:text-7xl font-black leading-[1.2] mb-8 text-slate-900 dark:text-white">
+                ارتقِ بدراستك إلى <br> <span class="text-gradient">عصر الذكاء الاصطناعي</span>
+            </h1>
+            <p id="heroDesc" class="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-12 max-w-2xl mx-auto">
+                تعلم كيف تُسخّر أدوات الـ AI لمضاعفة إنتاجيتك وتطوير أسلوب تعلمك بذكاء.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-5 justify-center items-center">
+                <a href="#pomodoro" class="bg-main-gradient px-10 py-4 rounded-2xl text-white font-bold text-lg hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(35,37,198,0.4)] w-full sm:w-auto text-center transition-all">ابدأ الآن</a>
+                <a href="#techniques" class="px-10 py-4 rounded-2xl border-2 border-slate-200 dark:border-white/10 text-slate-700 dark:text-white font-bold text-lg hover:bg-slate-50 dark:hover:bg-white/5 w-full sm:w-auto text-center transition-all">استكشف التقنيات</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <section id="pomodoro" class="relative py-24 overflow-hidden border-t border-slate-200 dark:border-white/10">
+        <div class="absolute inset-0 z-0 opacity-20 dark:opacity-40 pointer-events-none animate-pattern" 
+             style="background-image: radial-gradient(#2325c6 1px, transparent 1px); background-size: 20px 20px;"></div>
+        
+        <div class="max-w-4xl mx-auto px-5 text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl font-black mb-12 text-slate-900 dark:text-white">ساعة <span class="text-gradient">البومودورو</span></h2>
+            <div class="bg-white/50 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 p-10 rounded-3xl shadow-xl">
+                <div id="timerDisplay" class="text-8xl md:text-9xl font-black mb-10 text-slate-900 dark:text-white">25:00</div>
+                <div class="flex flex-wrap justify-center gap-4 mb-10">
+                    <button onclick="setTimer(25)" class="px-6 py-2 rounded-xl bg-white/80 dark:bg-white/10 border border-slate-200 dark:border-white/10 hover:bg-primary hover:text-white transition-all text-slate-700 dark:text-white font-bold">25 دقيقة</button>
+                    <button onclick="setTimer(45)" class="px-6 py-2 rounded-xl bg-white/80 dark:bg-white/10 border border-slate-200 dark:border-white/10 hover:bg-accent hover:text-white transition-all text-slate-700 dark:text-white font-bold">45 دقيقة</button>
+                </div>
+                <div class="flex justify-center gap-6">
+                    <button onclick="toggleTimer()" class="w-16 h-16 rounded-full bg-main-gradient flex items-center justify-center text-white hover:scale-110 shadow-lg transition-all">
+                        <i data-lucide="play" id="playIcon"></i>
+                    </button>
+                    <button onclick="resetTimer()" class="w-16 h-16 rounded-full bg-slate-200 dark:bg-white/10 flex items-center justify-center text-slate-700 dark:text-white hover:bg-slate-300 dark:hover:bg-white/20 transition-all">
+                        <i data-lucide="refresh-cw"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="techniques" class="relative py-24 bg-slate-50 dark:bg-white/5 overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-[0.05] dark:opacity-[0.1] pointer-events-none" 
+             style="background-image: linear-gradient(to right, #bc1e1e 1px, transparent 1px), linear-gradient(to bottom, #bc1e1e 1px, transparent 1px); background-size: 40px 40px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6">تقنيات <span class="text-gradient">ذكية</span></h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group p-8 rounded-3xl bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-all hover:-translate-y-2 shadow-sm">
+                    <div class="h-40 mb-6 flex justify-center items-center">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTukmS-zaCBLfmZi3tL5hKrbKTpOKOueXenKg&s" class="h-full dark:invert-0 invert">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-slate-900 dark:text-white">Active Recall</h3>
+                    <p class="text-slate-600 dark:text-slate-400">استرجاع المعلومات بنشاط بدلاً من مجرد إعادة القراءة.</p>
+                </div>
+                <div class="group p-8 rounded-3xl bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 hover:border-accent/50 transition-all hover:-translate-y-2 shadow-sm">
+                    <div class="h-40 mb-6 flex justify-center items-center">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZdASzrMaxqmrADM4M1FV3nARJn0Z7DqDaEQ&s" class="h-full dark:invert-0 invert">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-slate-900 dark:text-white">Feynman Technique</h3>
+                    <p class="text-slate-600 dark:text-slate-400">تعلم عبر شرح المعلومات بتبسيط شديد للآخرين.</p>
+                </div>
+                <div class="group p-8 rounded-3xl bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-all hover:-translate-y-2 shadow-sm">
+                    <div class="h-40 mb-6 flex justify-center items-center">
+                        <img src="https://illustrations.popsy.co/white/success.svg" class="h-full dark:invert-0 invert">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-slate-900 dark:text-white">Spaced Repetition</h3>
+                    <p class="text-slate-600 dark:text-slate-400">مراجعة المعلومات على فترات زمنية متباعدة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section id="schedule" class="relative py-24 overflow-hidden transition-colors duration-700">
+        <div class="absolute inset-0 z-0 opacity-[0.05] dark:opacity-[0.1] pointer-events-none" 
+             style="background: repeating-linear-gradient(45deg, #2325c6, #2325c6 1px, transparent 1px, transparent 15px);"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6">الجدول الدراسي <span class="text-gradient">المثالي</span></h2>
+                <p class="text-slate-600 dark:text-slate-400">خطة يومية متكاملة لدمج الذكاء الاصطناعي في روتينك الدراسي.</p>
+            </div>
+
+            <div class="relative before:absolute before:inset-0 before:ml-auto before:-mr-[2px] md:before:mx-auto before:h-full before:w-[2px] before:bg-gradient-to-b before:from-primary/50 before:via-accent/50 before:to-transparent">
+                
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group mb-12">
+                    <div class="flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 shadow-lg z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-transform duration-500 group-hover:scale-110">
+                        <i data-lucide="sunrise" class="text-white w-7 h-7"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[45%] p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm backdrop-blur-md">
+                        <time class="font-black text-primary mb-1 block">6:00 AM</time>
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white">الاستيقاظ والنشاط</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">بداية اليوم بتمارين خفيفة وتنظيم المهام باستخدام AI Planner.</p>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group mb-12">
+                    <div class="flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 shadow-lg z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-transform duration-500 group-hover:scale-110">
+                        <i data-lucide="brain" class="text-white w-7 h-7"></i>
+                    </div>
+                    <div data-type="study-session" class="w-[calc(100%-4rem)] md:w-[45%] p-6 rounded-2xl bg-white dark:bg-white/5 border-l-4 border-l-blue-500 border border-slate-200 dark:border-white/10 shadow-sm backdrop-blur-md">
+                        <time class="font-black text-blue-500 mb-1 block">7:30 AM - 10:00 AM</time>
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white">مذاكرة المواد العلمية</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">استخدام تقنية Feynman لشرح الدروس الصعبة لمساعد ذكي.</p>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group mb-12">
+                    <div class="flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 shadow-lg z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-transform duration-500 group-hover:scale-110">
+                        <i data-lucide="coffee" class="text-white w-7 h-7"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[45%] p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm backdrop-blur-md">
+                        <time class="font-black text-emerald-500 mb-1 block">10:00 AM - 11:00 AM</time>
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white">فترة راحة وتغذية</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">وقت الراحة لاستعادة النشاط الذهني قبل الجلسة القادمة.</p>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group mb-12">
+                    <div class="flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 shadow-lg z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-transform duration-500 group-hover:scale-110">
+                        <i data-lucide="languages" class="text-white w-7 h-7"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[45%] p-6 rounded-2xl bg-white dark:bg-white/5 border-r-4 border-r-purple-500 border border-slate-200 dark:border-white/10 shadow-sm backdrop-blur-md">
+                        <time class="font-black text-purple-500 mb-1 block">11:00 AM - 1:30 PM</time>
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white">تطوير اللغات</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">ممارسة المحادثة مع AI Tutor لتقسين مهارات النطق والاستماع.</p>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group mb-12">
+                    <div class="flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500 to-red-700 shadow-lg z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-transform duration-500 group-hover:scale-110">
+                        <i data-lucide="check-square" class="text-white w-7 h-7"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[45%] p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm backdrop-blur-md">
+                        <time class="font-black text-accent mb-1 block">4:00 PM - 6:00 PM</time>
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white">حل اختبارات ذكية</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">توليد اختبارات مخصصة بناءً على نقاط الضعف في المذاكرة.</p>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-700 to-slate-900 shadow-lg z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-transform duration-500 group-hover:scale-110">
+                        <i data-lucide="moon" class="text-white w-7 h-7"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[45%] p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm backdrop-blur-md">
+                        <time class="font-black text-slate-500 mb-1 block">10:00 PM</time>
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white">راحة تامة</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">إغلاق جميع الشاشات لضمان جودة نوم تساعد على تثبيت المعلومات.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="relative bg-white dark:bg-darkBg py-16 border-t border-slate-200 dark:border-white/10 overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" 
+             style="background-image: radial-gradient(#2325c6 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-right">
+                
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-black text-gradient" data-ar="مصر الرقمية" data-en="Digital Egypt">مصر الرقمية</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed" 
+                       data-ar="نحو تحول رقمي متكامل يخدم جميع قطاعات المجتمع المصري من خلال دمج تقنيات الذكاء الاصطناعي في التعليم." 
+                       data-en="Towards an integrated digital transformation serving all sectors of Egyptian society by integrating AI in education.">
+                        نحو تحول رقمي متكامل يخدم جميع قطاعات المجتمع المصري من خلال دمج تقنيات الذكاء الاصطناعي في التعليم.
+                    </p>
+                    <div class="flex gap-4 items-center">
+                        <a href="https://www.facebook.com/egypt.moe" target="_blank" class="w-10 h-10 rounded-xl bg-[#1877F2]/10 flex items-center justify-center text-[#1877F2] hover:bg-[#1877F2] hover:text-white transition-all shadow-sm">
+                            <i data-lucide="facebook"></i>
+                        </a>
+                        <a href="https://moe.gov.eg/elearningenterypage/e-learning" target="_blank" 
+   class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 hover:bg-amber-500 hover:text-white transition-all shadow-sm border border-amber-500/20">
+    <i data-lucide="earth"></i>
+</a>
+                        <a href="https://www.youtube.com/@MoEEgyptEduStream" target="_blank" class="w-10 h-10 rounded-xl bg-[#FF0000]/10 flex items-center justify-center text-[#FF0000] hover:bg-[#FF0000] hover:text-white transition-all shadow-sm">
+                            <i data-lucide="youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-slate-900 dark:text-white" data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                        <li><a href="#pomodoro" class="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" data-ar="ساعة التركيز" data-en="Focus Timer">ساعة التركيز</a></li>
+                        <li><a href="#techniques" class="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" data-ar="تقنيات الدراسة" data-en="Study Techniques">تقنيات الدراسة</a></li>
+                        <li><a href="#schedule" class="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" data-ar="الجدول الدراسي" data-en="Daily Schedule">الجدول الدراسي</a></li>
+                    </ul>
+                </div>
+                
+                <!-- <div>
+                    <h3 class="text-xl font-bold mb-6 text-slate-900 dark:text-white" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center shrink-0">
+                                <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm break-all mt-2">
+                                Mohamed.2407653@emp.moe.edu.eg
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-accent"></i>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mt-2" data-ar="إدارة تنمية مادة الكمبيوتر التعليمي" data-en="Computer Education Development Department">
+                                إدارة تنمية مادة الكمبيوتر التعليمي
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+             -->
+            <div class="border-t border-slate-200 dark:border-white/10 mt-12 pt-8 text-center">
+                <p class="text-slate-500 dark:text-slate-400 text-sm">
+                    © 2025 <span data-ar="مسابقة مصر الرقمية" data-en="Digital Egypt Competition">مسابقة مصر الرقمية</span>. 
+                    <span data-ar="جميع الحقوق محفوظة للطالب" data-en="All rights reserved to the student">جميع الحقوق محفوظة للطالب</span>.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="functions.js"></script>
+</body>
+</html>
