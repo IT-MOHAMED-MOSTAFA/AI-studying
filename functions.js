@@ -1,94 +1,113 @@
-// [1] نظام تبديل الثيم (Dark/Light Mode)
-function toggleTheme() {
-    document.documentElement.classList.toggle('dark');
-}
+/* =========================
+   Language System
+========================= */
 
-// [2] نظام تبديل اللغة (Ar/En)
-const translations = {
-    en: {
-        title: 'Elevate Your Studies with <br><span class="text-gradient">AI Power</span>',
-        desc: 'Harness AI tools to double your productivity and transform your learning.',
-        langLabel: 'العربية'
-    },
-    ar: {
-        title: 'ارتقِ بدراستك إلى <br> <span class="text-gradient">عصر الذكاء الاصطناعي</span>',
-        desc: 'تعلم كيف تُسخّر أدوات الـ AI لمضاعفة إنتاجيتك وتطوير أسلوب تعلمك بذكاء.',
-        langLabel: 'English'
+let currentLang = localStorage.getItem("lang") || "ar";
+
+const htmlTag = document.documentElement;
+const langBtn = document.getElementById("langLabel");
+
+function applyLanguage(lang) {
+
+    // تغيير اتجاه الصفحة
+    if (lang === "ar") {
+        htmlTag.setAttribute("dir", "rtl");
+        htmlTag.setAttribute("lang", "ar");
+        langBtn.textContent = "English";
+    } else {
+        htmlTag.setAttribute("dir", "ltr");
+        htmlTag.setAttribute("lang", "en");
+        langBtn.textContent = "العربية";
     }
-};
+
+    // تغيير النصوص
+    document.querySelectorAll("[data-ar]").forEach(el => {
+        el.innerHTML = el.getAttribute(`data-${lang}`);
+    });
+
+    // حفظ اللغة
+    localStorage.setItem("lang", lang);
+    currentLang = lang;
+}
 
 function toggleLang() {
-    const html = document.documentElement;
-    const currentLang = html.getAttribute('lang') || 'ar';
-    const nextLang = currentLang === 'ar' ? 'en' : 'ar';
-    
-    html.setAttribute('lang', nextLang);
-    html.setAttribute('dir', nextLang === 'ar' ? 'rtl' : 'ltr');
-    
-    document.getElementById('heroTitle').innerHTML = translations[nextLang].title;
-    document.getElementById('heroDesc').innerText = translations[nextLang].desc;
-    document.getElementById('langLabel').innerText = translations[nextLang].langLabel;
+    const newLang = currentLang === "ar" ? "en" : "ar";
+    applyLanguage(newLang);
 }
 
-// [3] نظام ساعة البومودورو (Pomodoro Timer)
-let timer;
-let timeLeft = 1500; // 25 min
-let isRunning = false;
+
+/* =========================
+   Theme System
+========================= */
+
+function toggleTheme() {
+    document.documentElement.classList.toggle("dark");
+
+    const isDark = document.documentElement.classList.contains("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+}
+
+// تحميل الثيم المحفوظ
+if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.classList.add("dark");
+}
+
+
+/* =========================
+   Pomodoro Timer
+========================= */
+
+let time = 25 * 60;
+let timer = null;
+let running = false;
+
+const display = document.getElementById("timerDisplay");
+const playIcon = document.getElementById("playIcon");
 
 function updateDisplay() {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    document.getElementById('timerDisplay').innerText = 
-        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    const min = Math.floor(time / 60).toString().padStart(2, "0");
+    const sec = (time % 60).toString().padStart(2, "0");
+    display.textContent = `${min}:${sec}`;
 }
 
 function setTimer(minutes) {
-    clearInterval(timer);
-    isRunning = false;
-    timeLeft = minutes * 60;
+    time = minutes * 60;
     updateDisplay();
-    document.getElementById('playIcon').setAttribute('data-lucide', 'play');
-    lucide.createIcons();
 }
 
 function toggleTimer() {
-    if (isRunning) {
-        clearInterval(timer);
-        document.getElementById('playIcon').setAttribute('data-lucide', 'play');
-    } else {
+    running = !running;
+
+    if (running) {
         timer = setInterval(() => {
-            if (timeLeft > 0) {
-                timeLeft--;
+            if (time > 0) {
+                time--;
                 updateDisplay();
             } else {
                 clearInterval(timer);
-                isRunning = false;
-                handleSessionComplete();
+                running = false;
+                alert(currentLang === "ar" ? "انتهى الوقت!" : "Time is up!");
             }
         }, 1000);
-        document.getElementById('playIcon').setAttribute('data-lucide', 'pause');
+    } else {
+        clearInterval(timer);
     }
-    isRunning = !isRunning;
-    lucide.createIcons();
 }
 
 function resetTimer() {
     clearInterval(timer);
-    isRunning = false;
-    timeLeft = 1500;
+    running = false;
+    time = 25 * 60;
     updateDisplay();
-    document.getElementById('playIcon').setAttribute('data-lucide', 'play');
+}
+
+
+/* =========================
+   INIT
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+    applyLanguage(currentLang);
+    updateDisplay();
     lucide.createIcons();
-}
-
-function handleSessionComplete() {
-    const studySession = document.querySelector('[data-type="study-session"]');
-    if (studySession) {
-        studySession.classList.add('border-l-emerald-500', 'bg-emerald-500/10');
-        studySession.querySelector('h4').innerHTML += ' <span class="text-emerald-500 text-sm block">✓ تم الإنجاز</span>';
-    }
-    alert("انتهى وقت التركيز! الجدول تم تحديثه.");
-}
-
-// تفعيل الأيقونات عند التشغيل
-lucide.createIcons();
+});
